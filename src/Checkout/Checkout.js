@@ -3,10 +3,11 @@ import classes from "./Checkout.module.css";
 import Subtotal from "../Subtotal/Subtotal";
 import Product from "../Product/Product";
 import { useStateValue } from "../State/StateProvider";
+import CheckoutProduct from "./CheckoutProduct/CheckoutProduct";
 
 const Checkout = (props) => {
   const [state, dispatch] = useStateValue();
-
+  console.log(state.basket);
   return (
     <div className={classes.checkout}>
       <div className={classes.checkout__left}>
@@ -17,7 +18,17 @@ const Checkout = (props) => {
         />
         <div>
           <h2 className={classes.checkout__title}>Your shopping Basket</h2>
-          <CheckoutProduct />
+          {state.basket.map((item) => {
+            return (
+              <CheckoutProduct
+                price={item.price}
+                image={item.image}
+                rating={4}
+                id={item.id}
+                title={item.title}
+              />
+            );
+          })}
         </div>
       </div>
       <div className={classes.checkout__right}>

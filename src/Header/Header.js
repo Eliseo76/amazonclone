@@ -24,7 +24,14 @@ const Header = (props) => {
       <div className={classes.header__nav}>
         <div className={classes.header__option}>
           <span className={classes.header__optionLineOne}>Hello Guest</span>
-          <span className={classes.header__optionLineTwo}>Sign In</span>
+          <NavLink activeStyle={{ color: "white" }} to={"/login"}>
+            <span
+              className={classes.header__optionLineTwo}
+              style={{ color: "white" }}
+            >
+              Sign In
+            </span>
+          </NavLink>
         </div>
         <div className={classes.header__option}>
           <span className={classes.header__optionLineOne}>Returns</span>

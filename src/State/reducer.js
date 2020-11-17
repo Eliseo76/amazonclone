@@ -1,6 +1,7 @@
 export const initialState = {
   basket: [],
   total: 0,
+  user: null,
 };
 
 const reducer = (state, action) => {
@@ -12,6 +13,24 @@ const reducer = (state, action) => {
         basket: [...state.basket, action.item],
         total: state.total + action.item.price,
       };
+    case "REMOVE_FROM_BASKET":
+      const index = state.basket.findIndex((basketItem) => {
+        return basketItem.id === action.id;
+      });
+      let newBasket = [...state.basket];
+      if (index >= 0) {
+        newBasket.splice(index, 1);
+      } else {
+        console.warn(
+          `Can't remove product (id: ${action.id}) as its no in the basket!`
+        );
+      }
+      return {
+        ...state,
+        basket: newBasket,
+        total: state.total - state.basket[index].price,
+      };
+
     default:
       return state;
   }

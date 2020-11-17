@@ -7,7 +7,6 @@ const Product = ({ id, title, image, price, rating }) => {
   const [{ basket }, dispatch] = useStateValue();
   const [value, setValue] = useState(4);
 
-  console.log(basket);
   const addToBasket = () => {
     //dispatch the item to the state basket
     dispatch({
@@ -17,6 +16,7 @@ const Product = ({ id, title, image, price, rating }) => {
         title: title,
         price: price,
         rating: rating,
+        image: image,
       },
     });
   };
